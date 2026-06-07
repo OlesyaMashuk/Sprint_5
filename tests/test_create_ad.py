@@ -42,7 +42,7 @@ class TestAdCreationAuthorized:
         driver.find_element(*INPUT_PRICE).send_keys("4000")
         
         
-        # Шаг 3: Нажать «Опубликовать»
+        # Нажать «Опубликовать»
         driver.find_element(*BTN_PUBLISH).click()
         wait.until(expected_conditions.visibility_of_element_located((BTN_LOGOUT)))
         ad_element = wait.until(EC.presence_of_element_located((By.XPATH, f"//*[contains(text(), 'Тестовый товар6')]")))

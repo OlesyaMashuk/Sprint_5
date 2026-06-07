@@ -5,9 +5,6 @@ from locators import *
 from utils import generate_unique_email, EXISTING_USER_EMAIL
 
 
-#driver = webdriver.Chrome()
-#driver.get("https://qa-desk.education-services.ru/")
-
 class TestRegistrationSuccess:
     #Тест успешной регистрации нового пользователя
     def test_register_new_user(self, driver, wait):
