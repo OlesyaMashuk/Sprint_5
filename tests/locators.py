@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from data.test_data import AD_TITLE
 
 
 BTN_LOGIN_REGISTER = (By.XPATH, "//button[contains(text(), 'Вход и регистрация') or contains(text(), 'Войти')]")
@@ -16,7 +17,7 @@ INPUT_DESCRIPTION = (By.XPATH, "//*[@placeholder='Описание товара'
 INPUT_PRICE = (By.XPATH, "//input[@placeholder='Стоимость']")
 SELECT_CATEGORY = (By.NAME, "category")
 SELECT_CITY = (By.NAME, "city")
-LOCATOR_NEW = (By.XPATH, "//img[@alt='Тестовый товар4']")
+LOCATOR_NEW_AD = (By.XPATH, f"//*[contains(text(), '{AD_TITLE}')]")
 USER_AVATAR_BLOCK = (By.CSS_SELECTOR, ".user-profile, .avatar, img[alt='avatar'], div[class*='user']")
 USER_NAME_LABEL = (By.XPATH, "//*[contains(text(), 'User.')]")
 MODAL_AUTH_TITLE = (By.XPATH, "//*[contains(text(), 'Чтобы разместить объявление, авторизуйтесь')]")

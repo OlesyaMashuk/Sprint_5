@@ -13,7 +13,3 @@ def js_click(driver, locator):
     # клик через JavaScript
     element = WebDriverWait(driver, 10).until(EC.presence_of_element_located(locator))
     driver.execute_script("arguments[0].click();", element)
-
-# Данные пользователя
-EXISTING_USER_EMAIL = "testerolesya@mail.ru"
-EXISTING_USER_PASSWORD = "12345678"

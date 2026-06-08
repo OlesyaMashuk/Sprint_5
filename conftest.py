@@ -13,7 +13,3 @@ def driver():
     yield driver
     
     driver.quit()
-
-@pytest.fixture
-def wait(driver):
-    return WebDriverWait(driver, 10) 

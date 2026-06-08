@@ -1,12 +1,14 @@
 
 from selenium.webdriver.support import expected_conditions as EC
 from locators import *
-from utils import EXISTING_USER_EMAIL, EXISTING_USER_PASSWORD
+from selenium.webdriver.support.ui import WebDriverWait
+from data.test_data import EXISTING_USER_EMAIL, EXISTING_USER_PASSWORD
 
 class TestLoginSuccess:
     # тест успешной авторизации
 
-    def test_login_user(self, driver, wait):
+    def test_login_user(self, driver):
+        wait = WebDriverWait(driver, 10)
         # Нажать"Вход и регистрация"
         wait.until(EC.element_to_be_clickable(BTN_LOGIN_REGISTER)).click()
         # Заполненить поля
@@ -20,8 +22,8 @@ class TestLoginSuccess:
         # Проверка что есть юзер
         user_name = driver.find_element(*USER_NAME_LABEL).text
         assert "User." in user_name
-        print("✅ Юзер есть")
+        
 
         logout_btn = wait.until(EC.element_to_be_clickable(BTN_LOGOUT))
         assert logout_btn.text.strip() == "Выйти"
-        print("✅ Пользователь успешно авторизован (кнопка 'Выйти' на месте).")
+        

@@ -2,12 +2,15 @@
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
 from locators import *
-from utils import generate_unique_email, EXISTING_USER_EMAIL
+from selenium.webdriver.support.ui import WebDriverWait
+from data.test_data import  EXISTING_USER_EMAIL
+from utils import generate_unique_email
 
 
 class TestRegistrationSuccess:
     #Тест успешной регистрации нового пользователя
-    def test_register_new_user(self, driver, wait):
+    def test_register_new_user(self, driver):
+        wait = WebDriverWait(driver, 10)
         # Нажать «Вход и регистрация»
         wait.until(EC.element_to_be_clickable(BTN_LOGIN_REGISTER)).click()
         # Нажать  «Нет аккаунта»
@@ -27,19 +30,20 @@ class TestRegistrationSuccess:
         # Проверка, что кнопка "Вход и регистрация" исчезла
         wait.until(EC.invisibility_of_element_located(BTN_LOGIN_REGISTER))
         assert True
-        print("✅ Кнопка 'Вход и регистрация' исчезла.")
+        
 
         # Проверка, что отображается имя пользователя (User.)
         user_label = wait.until(EC.visibility_of_element_located(USER_NAME_LABEL))
         assert "User." in user_label.text
-        print("✅ Имя User. отображается")
+        
         
 
 
 class TestRegistrationInvalidEmail:
     #Тест регистрации с некорректным email
 
-    def test_register_invalid_email_format(self, driver, wait):
+    def test_register_invalid_email_format(self, driver):
+        wait = WebDriverWait(driver, 10)
         
         # Нажать  «Вход и регистрация»
         wait.until(EC.element_to_be_clickable(BTN_LOGIN_REGISTER)).click()
@@ -61,14 +65,15 @@ class TestRegistrationInvalidEmail:
         error_text = driver.find_element(*ERROR_MESSAGE_EMAIL).text
         
         assert "Ошибка" in error_text
-        print("✅ Сообщение 'Ошибка' отображается")
+        
         
     
 
 class TestRegistrationExistingUser:
     #Тест регистрации существующего пользователя
 
-    def test_register_existing_user(self, driver, wait):
+    def test_register_existing_user(self, driver):
+        wait = WebDriverWait(driver, 10)
         # Открыть форму регистрации
         wait.until(EC.element_to_be_clickable(BTN_LOGIN_REGISTER)).click()
         wait.until(EC.element_to_be_clickable(BTN_NO_ACCOUNT)).click()
@@ -87,4 +92,4 @@ class TestRegistrationExistingUser:
         error_text = driver.find_element(*ERROR_MESSAGE_EMAIL).text
         
         assert "Ошибка" in error_text
-        print("✅ Сообщение 'Ошибка' отображается")
+        

@@ -1,12 +1,14 @@
 
 from selenium.webdriver.support import expected_conditions as EC
 from locators import *
-from utils import EXISTING_USER_EMAIL, EXISTING_USER_PASSWORD
+from selenium.webdriver.support.ui import WebDriverWait
+from data.test_data import EXISTING_USER_EMAIL, EXISTING_USER_PASSWORD
 
 class TestLogout:
     # Тест разлогина пользователя
 
-    def test_logout_user(self, driver, wait):
+    def test_logout_user(self, driver):
+        wait = WebDriverWait(driver, 10)
         # Авторизация польз-ля
         wait.until(EC.element_to_be_clickable(BTN_LOGIN_REGISTER)).click()
         wait.until(EC.visibility_of_element_located(INPUT_EMAIL)).send_keys(EXISTING_USER_EMAIL)
